@@ -2,6 +2,7 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 
+//assigning image paths to files.
 let filesObj = {
     pdf: 'https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg',
     txt: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Icon_Text.svg',
@@ -19,14 +20,19 @@ const server = http.createServer((req, res) => {
         let myFiles = '';
 
         files.forEach((file) => {
+
+            // slicing . from file extension
             let fileKey = path.extname(file).slice(1);
             console.log(fileKey);
+
             myFiles += `<img src='${filesObj[fileKey]}' width=5% height=5%>${file.split('.')[0]}<br><br>`;
         });
+
         res.end(`<h3>${myFiles}</h3>`);
     });
 })
 
+// listening to port 3000
 server.listen(3000, () => {
     console.log('listening to port 3000')
 });
