@@ -23,7 +23,7 @@ let students = [
         name: 'pankaj',
         age: 13,
         mentorName: 'rahul',
-        mentorId:1,
+        mentorId: 1,
         subject: 'c++'
     }
 ]
@@ -69,6 +69,28 @@ app.get('/students/:mentorId', (req, res) => {
 
 });
 
-app.listen(3000,()=>{
+app.put('/updateMentor', (req, res) => {
+    let newMentorObj = mentors.find((mentor) => mentor.id == req.body.mentorId);
+    if (newMentorObj) {
+        students.forEach((student) => {
+            if (student.id == req.body.studentId) {
+                student.mentorName = newMentorObj.name;
+                student.mentorId = newMentorObj.id;
+                student.subject = newMentorObj.subject;
+            }
+        });
+    }
+
+    res.json({ message: 'mentor updated' });
+})
+
+app.delete('/deleteStudent', (req, res) => {
+    let studentToDelete = students.find((student => student.id == req.body.stuId));
+    let index = students.indexOf(studentToDelete);
+    students.splice(index, 1);
+    res.write('Student Deleted');
+})
+
+app.listen(3000, () => {
     console.log('Listening to port 3000');
 })
