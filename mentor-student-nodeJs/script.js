@@ -1,3 +1,6 @@
+let mentorData;
+
+//Adds mentor to database
 async function addMentor() {
     let mentorData = {
         name: document.getElementById('name').value,
@@ -13,8 +16,8 @@ async function addMentor() {
 
     loadMentorData(false);
 }
-let mentorData;
-let studentData;
+
+// updates mentor table 
 async function loadMentorData(isFirst = true) {
     let dataraw = await fetch("http://localhost:3000/mentors");
     mentordata = await dataraw.json();
@@ -39,6 +42,7 @@ async function loadMentorData(isFirst = true) {
 
 }
 
+// displys student form
 async function displayStudentForm(mentorId) {
     document.getElementById('studentForm').style.display = 'block';
     let reqMentor = mentordata.find((mentor) => mentor.id == mentorId);
@@ -47,6 +51,7 @@ async function displayStudentForm(mentorId) {
     document.getElementById("mentorName").disabled = true;
 }
 
+//adds student to student database
 async function addStudent() {
     let mentorDetails = document.getElementById('mentorName').value.split(',');
     let studentData = {
@@ -66,5 +71,5 @@ async function addStudent() {
     document.querySelector('#studentForm').style.display = 'none';
 }
 
-
+// function calls on opening window
 window.onload = loadMentorData;

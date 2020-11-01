@@ -1,5 +1,6 @@
 let studentdata;
 
+//updates student data in student table
 async function loadStudentData(isUpdate = false) {
 
     let dataraw = await fetch("http://localhost:3000/students");
@@ -26,6 +27,7 @@ async function loadStudentData(isUpdate = false) {
     })
 }
 
+//assigns a requested mentor for a student.
 async function updateMentor(stuId, stuName) {
     let confirmData = confirm('Are you sure you want to update mentor for student ' + stuName);
     if (confirmData) {
@@ -44,6 +46,7 @@ async function updateMentor(stuId, stuName) {
     loadStudentData();
 }
 
+//deletes student from student database
 async function deleteStudent(studentId) {
     let confirmDelete = confirm('Are you sure you want to delete student?')
     if (confirmDelete) {
@@ -60,4 +63,5 @@ async function deleteStudent(studentId) {
     }
 }
 
+// function calls on opening window
 window.onload = loadStudentData;
