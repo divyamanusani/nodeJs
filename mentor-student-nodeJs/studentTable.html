@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Student Data</title>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table" id="studentTable">
+            <caption>Student Table</caption>
+            <thead>
+                <tr>
+                    <th scope="col">StudentId</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Mentor Name#Id</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+
+            </tbody>
+
+        </table>
+    </div>
+    <script>
+
+        async function loadStudentData() {
+
+            let dataraw = await fetch("http://localhost:3000/students");
+            let studentdata = await dataraw.json();
+            console.log(studentdata);
+            let table = document.getElementById('studentTableBody');
+            console.log(studentdata);
+            console.log(table);
+            studentdata.forEach((stu) => {
+                let tr = document.createElement('tr');
+                let tdId = document.createElement('td');
+                let tdAge = document.createElement('td');
+                let tdname = document.createElement('td');
+                let tdsubject = document.createElement('td');
+                let tdmentorName = document.createElement('td');
+                tdmentorName.innerHTML = stu.mentorName+'#'+stu.mentorId;
+                tdId.innerHTML = stu.id;
+                tdname.innerHTML = stu.name;
+                tdsubject.innerHTML = stu.subject;
+                tdAge.innerHTML = stu.age;
+                tr.append(tdId, tdname, tdAge, tdsubject, tdmentorName);
+                table.appendChild(tr);
+            })
+        }
+        window.onload = loadStudentData;
+
+    </script>
+</body>
+
+</html>
