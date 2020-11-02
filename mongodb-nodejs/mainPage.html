@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>Node JS application</title>
+    <style>
+        #studentForm {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Add Mentor</h1>
+        <hr>
+        <form onsubmit="addMentor();return false;">
+            <div class="form-group">
+                <label for="name">Enter Mentor Name</label>
+                <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+                <label for="sub">Enter Mentor Subject</label>
+                <input type="text" class="form-control" id="sub">
+            </div>
+
+            <button type="submit" class="btn btn-info">Submit</button>
+            <a class="btn btn-primary" target="_blank" href="studentTable.html" role="button"
+                style="float:right">Students Details</a>
+
+        </form>
+        <br>
+        <table class="table" id="mentorTable">
+            <caption>Mentor Table</caption>
+            <thead>
+                <tr>
+                    <th scope="col">MentorId</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Subject</th>
+
+                </tr>
+            </thead>
+            <tbody id="mentorTableBody">
+
+            </tbody>
+        </table>
+
+        <form id="studentForm" onsubmit="addStudent();return false;">
+            <div class="form-group">
+                <label for="stuname">Enter Student Name</label>
+                <input type="text" class="form-control" id="stuname">
+            </div>
+            <div class="form-group">
+                <label for="age">Enter Student Age</label>
+                <input type="text" class="form-control" id="age">
+            </div>
+            <div class="form-group">
+                <label for="mentorName">Mentor Details</label>
+                <input type="text" class="form-control" id="mentorName">
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
